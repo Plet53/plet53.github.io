@@ -12,7 +12,6 @@
   --seen-links: #7b00cd;
   --seen-links-highlight: #56008f;
   --mono: #363636;
-  --monobg: #cdcdcd;
 
   /* modern font stacks https://modernfontstacks.com */
   --mono-slab: 'Nimbus Mono PS', 'Courier New', monospace;
@@ -31,7 +30,6 @@
     --seen-links: #9d5aca;
     --seen-links-highlight: #b084ce;
     --mono: #ccc;
-    --monobg: #414141;
   }
 
   p{
@@ -201,7 +199,6 @@ span.mono {
   font-size: 0.9em;
   color: var(--mono);
   white-space: nowrap;
-  background-color: var(--monobg);
   padding: 1px;
   border-radius: 4px;
 }
