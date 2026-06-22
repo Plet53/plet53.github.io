@@ -1,0 +1,381 @@
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* color variables */
+  --textcolor: #000000;
+  --pagebg: #dadada;
+  --sectionbg: linear-gradient(to right, #ffffff, 70%, var(--pagebg));
+  --links: #0000dd;
+  --links-highlight: #00009d;
+  --seen-links: #7b00cd;
+  --seen-links-highlight: #56008f;
+  --mono: #363636;
+  --monobg: #cdcdcd;
+
+  /* modern font stacks https://modernfontstacks.com */
+  --mono-slab: 'Nimbus Mono PS', 'Courier New', monospace;
+  --didone: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
+  --handwritten: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  *{
+    --textcolor: #ffffff;
+    --pagebg: #242424;
+    --sectionbg: linear-gradient(to right, #424242, 80%, var(--pagebg));
+    --links: #6572e7;
+    --links-highlight: #99a0e4;
+    --seen-links: #9d5aca;
+    --seen-links-highlight: #b084ce;
+    --mono: #ccc;
+    --monobg: #414141;
+  }
+
+  p{
+    letter-spacing: .025em;
+    font-weight: 400;
+  }
+
+  .light {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .dark {
+    display: none;
+  }
+}
+
+html{
+  background-color: var(--pagebg);
+}
+
+body {
+  font-size: 19px;
+  /* defining a font size here determines the size of an em */
+  font-family: serif;
+  line-height: 1.4;
+  color: var(--textcolor);
+  position: relative; /* required for 'absolute' positioning */
+  margin: 0;
+  margin-top: -1em; /* fill whole page */
+  max-width: 60em;
+}
+
+header {
+  padding: 3em 2em 1em 2em; /* top right bottom left */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  a {
+    color: var(--textcolor);
+    text-decoration-color: var(--textcolor);
+
+    :inert{
+      text-decoration: none;
+    }
+  }
+
+  a:hover {
+    color: var(--mono);
+    text-decoration-color: var(--mono);
+
+    :inert{
+      text-decoration: none;
+    }
+  }
+}
+
+h1 {
+  font-size: 1em;
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+}
+
+nav a:not(:last-of-type) {
+  margin-right: .5em;
+}
+
+/* sections */
+section {
+  padding: 6.5em 2em 3em;
+  /* the reason for padding instead of margin here is because anchor links automatically scroll to the top of the target */
+
+  /* set up sections that are not selected to hide */
+  display: none;
+  background: var(--sectionbg);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 110vh;
+
+  a {
+    text-decoration: underline;
+    color: var(--links);
+    text-decoration-color: var(--links);
+  }
+
+  a:hover {
+    color: var(--links-highlight);
+    text-decoration-color: var(--links-highlight);
+  }
+  
+  a:visited {
+    color: var(--seen-links);
+    text-decoration-color: var(--seen-links);
+  }
+
+  a:visited:hover {
+    color: var(--seen-links-highlight);
+    text-decoration-color: var(--seen-links-highlight);
+  }
+}
+
+section:target {
+  display: block;
+  /* :target is what makes the pages render one at a time. "block" is the default display mode */
+}
+
+section#home {
+  display: block;
+  /* this makes the homepage appear by default. */
+}
+
+/* footer */
+section:after {
+  content: "Written by Andrew Reade";
+  position: relative;
+  top: 1em;
+  color: var(--textcolor);
+  font-size: 85%;
+  border-top: 1px solid var(--textcolor);
+  font-family: var(--handwritten);
+}
+/* :after is kind of an advanced technique and is a bizarre way to handle a footer, but given that each section is a different height and they need to be positioned absolutely this is the best way i could think of */
+/* commentary from original template */
+
+/* text styles */
+p {
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+p:last-child {
+  margin-bottom: 0em;
+}
+
+ul {
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: .5em;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  font-size: 1.3em;
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+  letter-spacing: -0.02 em;
+}
+
+h4 {
+  margin-top: .4em;
+  margin-bottom: .6em;
+  letter-spacing: -0.02 em;
+}
+
+span.mono {
+  font-family: var(--mono-slab);
+  font-size: 0.9em;
+  color: var(--mono);
+  white-space: nowrap;
+  background-color: var(--monobg);
+  padding: 1px;
+  border-radius: 4px;
+}
+
+.didone {
+  font-family: var(--didone);
+}
+
+div.inline {
+  width: 35em;
+  max-width: 90vw;
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+/* this gives embedded stuff about the same width + spacing as paragraphs when it's inside a div with the "inline" class */
+
+.inline p{
+  font-size: 0.8em;
+  color: var(--links);
+  font-style: italic;
+}
+/* this makes text inside an "inline" div read as a caption */
+
+div.headerbox {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .1em;
+}
+
+div.card{
+  display: flex;
+  gap: 10px;
+  border: 3px outset var(--mono);
+  margin: 8px 0px;
+  padding: 4px;
+
+  div.imgbox{
+    width: 480px;
+    height: 480px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  div.text{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+div.card:nth-child(2n + 1){
+  flex-direction: row-reverse;
+}
+
+div.card:last-of-type {
+  margin-bottom: 0;
+}
+
+/* somes times you just gotta set a bunch of sizes Manually*/
+img.logo {
+  height: 384px;
+  width: 384px;
+}
+
+img.pento {
+  margin: -152px 0px 0px -230px;
+}
+
+img.platform {
+  margin: -140px 0px 0px -240px;
+}
+
+img.ffma {
+  margin: -40px 0px 0px 0px;
+}
+
+img.rps {
+  margin-left: -260px;
+}
+
+img.ave {
+  margin: -140px 0px 0px -240px;
+}
+
+img.umtsse {
+  margin: -140px 0px 0px -620px;
+}
+
+img.hex {
+  margin: 0px 0px 0px -60px;
+}
+
+/* phone styling */
+@media only screen and (max-width: 840px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  header {
+    padding: 1em 1em 1em 1em;
+    position: fixed;
+    background: var(--sectionbg);
+    border-bottom: 1px solid var(--textcolor);
+  }
+
+  header h1{
+    display: none;
+  }
+
+  section{
+    padding: 6em 1em 1em 1em;
+  }
+
+  nav{
+    white-space: nowrap;
+  }
+
+  nav a:not(:last-of-type) {
+    margin-right: 0em;
+  }
+
+  div.card {
+    div.imgbox {
+      width: 240px;
+      height: 240px;
+    }
+  }
+
+  img.logo {
+    height: 256px;
+    width: 256px;
+  }
+
+  img.exca {
+    width: 240px;
+  }
+
+  img.demon {
+    width: 612px;
+  }
+
+  img.pento {
+    width: 640px;
+    margin: -76px 0px 0px -115px;
+  }
+
+  img.platform {
+    width: 640px;
+    margin: -70px 0px 0px -120px;
+  }
+
+  img.ffma {
+    width: 270px;
+    margin: -20px 0px 0px 0px;
+  }
+
+  img.rps {
+    width: 512px;
+    margin-left: -130px;
+  }
+
+  img.ave {
+    width: 640px;
+    margin: -70px 0px 0px -120px;
+  }
+
+  img.umtsse {
+    width: 960px;
+    margin: -70px 0px 0px -310px;
+  }
+
+  img.hex {
+    width: 720px;
+    margin: 0px 0px 0px -30px;
+  }
+}
