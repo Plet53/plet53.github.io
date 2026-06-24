@@ -5,6 +5,7 @@
 
   /* color variables */
   --textcolor: #000000;
+  --greencolor: #008800;
   --pagebg: #dadada;
   --sectionbg: linear-gradient(to right, #ffffff, 70%, var(--pagebg));
   --links: #0000dd;
@@ -23,6 +24,7 @@
 @media (prefers-color-scheme: dark) {
   *{
     --textcolor: #ffffff;
+    --greencolor: #00aa00;
     --pagebg: #242424;
     --sectionbg: linear-gradient(to right, #424242, 80%, var(--pagebg));
     --links: #6572e7;
