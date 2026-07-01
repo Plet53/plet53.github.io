@@ -15,7 +15,7 @@
   --mono: #363636;
 
   /* modern font stacks https://modernfontstacks.com */
-  --default: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+  --default: Charter, 'Bitstream Charter', Cambria, serif;
   --mono-slab: 'Nimbus Mono PS', 'Courier New', monospace;
   --didone: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
   --handwritten: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
